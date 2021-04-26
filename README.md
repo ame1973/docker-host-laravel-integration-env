@@ -14,8 +14,17 @@ clone your laravel project to **./src**
 - "traefik.http.routers.YOUR_PROJECT.rule=Host(`YOUR_PROJECT_DOMAIN.com`)"
 - "traefik.http.routers.YOUR_PROJECT.entrypoints=websecure"
 
+```
+docker-compose up -d
+```
+
 ## mysql
 
 DATABASE: laravel
 USER: root
 PASSWORD: password
+
+## Reset
+
+remove images
+rm -rf volumes
