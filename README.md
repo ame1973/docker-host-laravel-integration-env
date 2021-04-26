@@ -20,9 +20,12 @@ docker-compose up -d
 
 ## mysql
 
-DATABASE: laravel
-USER: root
-PASSWORD: password
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=laravel
+DB_USERNAME=root
+DB_PASSWORD=password
 
 ## Reset
 
