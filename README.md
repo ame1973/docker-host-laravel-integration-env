@@ -1,6 +1,6 @@
 # Docker host Laravel
 
-**php:7.3-fpm**
+**php:7.4-fpm**
 
 
 ## host project
