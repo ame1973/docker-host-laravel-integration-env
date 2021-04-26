@@ -41,8 +41,8 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=traefik-proxy"
-      - "traefik.http.routers.com-sm-logistics-dev.rule=Host(`dev.logistics.staymgt.com`)"
-      - "traefik.http.routers.com-sm-logistics-dev.entrypoints=websecure"
+      - "traefik.http.routers.YOUR_PROJECT.rule=Host(`YOUR_PROJECT_DOMAIN.com`)"
+      - "traefik.http.routers.YOUR_PROJECT.entrypoints=websecure"
 
 networks:
   traefik-proxy:
