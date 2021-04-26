@@ -4,14 +4,14 @@ FROM php:7.4-fpm
 RUN apt-get update && apt-get install -y \
     git \
     curl \
-	vim \
-	locales \
+    vim \
+    locales \
     libpng-dev \
-	libsodium-dev \
+    libsodium-dev \
     libonig-dev \
     libxml2-dev \
-	libzip-dev \
-	libjpeg62-turbo-dev \
+    libzip-dev \
+    libjpeg62-turbo-dev \
     libfreetype6-dev \
     zip \
     unzip \
