@@ -22,16 +22,19 @@ docker-compose up -d
 
 ## mysql
 
+```
 DB_CONNECTION=mysql
 DB_HOST=mysql
 DB_PORT=3306
 DB_DATABASE=laravel
 DB_USERNAME=root
 DB_PASSWORD=password
+```
 
 ## Reset
 
 remove images
+
 rm -rf volumes
 
 ## config Laravel
