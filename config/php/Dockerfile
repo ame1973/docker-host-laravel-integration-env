@@ -4,9 +4,15 @@ FROM php:7.4-fpm
 RUN apt-get update && apt-get install -y \
     git \
     curl \
+	vim \
+	locales \
     libpng-dev \
+	libsodium-dev \
     libonig-dev \
     libxml2-dev \
+	libzip-dev \
+	libjpeg62-turbo-dev \
+    libfreetype6-dev \
     zip \
     unzip \
     && docker-php-ext-install pdo_mysql \
@@ -15,7 +21,7 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install pcntl \
     && docker-php-ext-install bcmath \
     && docker-php-ext-install gd \
-	&& docker-php-ext-install zip \
+    && docker-php-ext-install zip \
     && docker-php-source delete
 
 # Clear cache
