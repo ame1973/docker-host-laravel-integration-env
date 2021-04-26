@@ -28,3 +28,7 @@ PASSWORD: password
 
 remove images
 rm -rf volumes
+
+## config Laravel
+
+`composer` and `php artisan` command need go to php containers shell run.
