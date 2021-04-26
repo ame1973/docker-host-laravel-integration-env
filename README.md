@@ -11,8 +11,10 @@ clone your laravel project to **./src**
 
 **change docker-compose.yml**
 
+```
 - "traefik.http.routers.YOUR_PROJECT.rule=Host(`YOUR_PROJECT_DOMAIN.com`)"
 - "traefik.http.routers.YOUR_PROJECT.entrypoints=websecure"
+```
 
 ```
 docker-compose up -d
