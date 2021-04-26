@@ -1,34 +1,27 @@
-#FROM php:7.4.15-fpm
-FROM php:7.3-fpm
+FROM php:7.4-fpm
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
-    build-essential \
-    curl \
     git \
-    vim \
-    jpegoptim optipng pngquant gifsicle \
-    locales \
+    curl \
     libpng-dev \
-    libsodium-dev \
     libonig-dev \
     libxml2-dev \
-    libjpeg62-turbo-dev \
-    libfreetype6-dev \
-    libzip-dev \
     zip \
-    unzip
+    unzip \
+    && docker-php-ext-install pdo_mysql \
+    && docker-php-ext-install mbstring \
+    && docker-php-ext-install exif \
+    && docker-php-ext-install pcntl \
+    && docker-php-ext-install bcmath \
+    && docker-php-ext-install gd \
+    && docker-php-source delete
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Install PHP extensions
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd pcntl zip
-RUN docker-php-ext-configure gd --with-gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-png-dir=/usr/include/
-RUN docker-php-ext-install gd
-
 # Get latest Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Create system user to run Composer and Artisan Commands
 RUN groupadd -g 1000 www
