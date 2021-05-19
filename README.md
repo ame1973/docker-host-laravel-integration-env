@@ -40,3 +40,9 @@ rm -rf volumes
 ## config Laravel
 
 `composer` and `php artisan` command need go to php containers shell run.
+
+## Issue
+
+- ERROR: no matching manifest for linux/arm64/v8 in the manifest list entries
+
+change `mysql:8.0.23` to `mysql/mysql-server:8.0.23`
