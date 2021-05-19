@@ -1,6 +1,14 @@
 # Docker host Laravel
 
-**php:7.4-fpm**
+- **Docker**
+
+- **Docker Compose**
+
+- **traefik**
+
+- **portainer**
+
+- **php:7.4-fpm**
 
 
 ## host project
