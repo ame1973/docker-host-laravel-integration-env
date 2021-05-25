@@ -34,7 +34,7 @@ services:
     tty: true
     volumes:
       - ./src:/var/www
-      - ./volumes/nginx/storage/public:/var/www/public/storage
+      # - ./volumes/nginx/storage/public:/var/www/public/storage
       - ./volumes/nginx/log:/var/log/nginx/
       - ./config/nginx/default.conf:/etc/nginx/conf.d/default.conf
     networks:
