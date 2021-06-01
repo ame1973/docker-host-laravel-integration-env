@@ -13,9 +13,17 @@
 
 ## host project
 
-change this project folder name to your own project name.
+1. change this project folder name to your own project name.
 
-clone your laravel project to **./src**
+2. clone your laravel project to **./src**
+
+3. run script
+
+```bash
+./depoly.sh YOUR_PROJECT YOUR_PROJECT_DOMAIN
+```
+
+or
 
 **change docker-compose.yml**
 
@@ -28,7 +36,7 @@ clone your laravel project to **./src**
 docker-compose up -d
 ```
 
-## mysql
+**.env mysql**
 
 ```
 DB_CONNECTION=mysql
