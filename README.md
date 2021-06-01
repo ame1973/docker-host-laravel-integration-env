@@ -15,7 +15,7 @@
 
 1. change this project folder name to your own project name.
 
-2. clone your laravel project to **./src**
+2. clone your laravel project to `./src`.
 
 3. run script
 
