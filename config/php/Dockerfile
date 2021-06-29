@@ -2,6 +2,7 @@ FROM php:7.4-fpm
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
+    cron \
     git \
     curl \
     vim \
@@ -22,7 +23,8 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install bcmath \
     && docker-php-ext-install gd \
     && docker-php-ext-install zip \
-    && docker-php-source delete
+    && docker-php-source delete \
+    && apt-get clean &&\
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -49,3 +51,17 @@ USER www
 # Start php-fpm server
 CMD ["php-fpm"]
 
+# Copy crontab file to the cron.d directory
+COPY crontab /etc/cron.d/crontab
+
+# Give execution rights on the cron job
+RUN chmod 0644 /etc/cron.d/crontab
+
+# Apply cron job
+RUN crontab /etc/cron.d/crontab
+
+# Create the log file to be able to run tail
+RUN touch /var/log/cron.log
+
+# Run the command on container startup
+CMD cron && tail -f /var/log/cron.log
