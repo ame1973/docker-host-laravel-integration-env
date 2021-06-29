@@ -48,14 +48,9 @@ COPY --chown=www:www . /var/www
 # Change current user to www
 USER www
 
-# Copy crontab file to the cron.d directory
-COPY crontab /etc/cron.d/crontab
-
-# Give execution rights on the cron job
-RUN chmod 0644 /etc/cron.d/crontab
-
-# Apply cron job
-RUN crontab /etc/cron.d/crontab
+COPY ./crontab /var/spool/cron/crontabs/root
+RUN chmod 0644 /var/spool/cron/crontabs/root
+RUN crontab /var/spool/cron/crontabs/root
 
 # Create the log file to be able to run tail
 RUN touch /var/log/cron.log
