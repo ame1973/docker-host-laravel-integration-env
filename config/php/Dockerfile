@@ -24,7 +24,7 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install gd \
     && docker-php-ext-install zip \
     && docker-php-source delete \
-    && apt-get clean &&\
+    && apt-get clean
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
