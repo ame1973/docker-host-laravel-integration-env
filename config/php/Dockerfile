@@ -2,7 +2,6 @@ FROM php:7.4-fpm
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
-    cron \
     git \
     curl \
     vim \
@@ -47,17 +46,6 @@ COPY --chown=www:www . /var/www
 
 # Change current user to www
 USER www
-
-COPY ./crontab /var/spool/cron/crontabs/root
-RUN chmod 0644 /var/spool/cron/crontabs/root
-RUN crontab /var/spool/cron/crontabs/root
-
-# Create the log file to be able to run tail
-RUN touch /var/log/cron.log
-
-# Run the command on container startup
-COPY ./entrypoint.sh /usr/local/bin/
-ENTRYPOINT ["entrypoint.sh"]
 
 # Start php-fpm server
 CMD ["php-fpm"]
