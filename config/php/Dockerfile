@@ -48,9 +48,6 @@ COPY --chown=www:www . /var/www
 # Change current user to www
 USER www
 
-# Start php-fpm server
-CMD ["php-fpm"]
-
 # Copy crontab file to the cron.d directory
 COPY crontab /etc/cron.d/crontab
 
@@ -64,4 +61,8 @@ RUN crontab /etc/cron.d/crontab
 RUN touch /var/log/cron.log
 
 # Run the command on container startup
-CMD cron && tail -f /var/log/cron.log
+COPY ./entrypoint.sh /usr/local/bin/
+ENTRYPOINT ["entrypoint.sh"]
+
+# Start php-fpm server
+CMD ["php-fpm"]
