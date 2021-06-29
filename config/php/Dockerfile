@@ -32,10 +32,11 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Install supervisor
-RUN apt-get update \
-  && apt-get install -y --no-install-recommends \
-    supervisor \
-  && rm -rf /var/lib/apt/lists/*
+RUN apt-get update &&\
+    apt-get install -y supervisor &&\
+    touch /var/run/supervisor.sock &&\
+    chmod 777 /var/run/supervisor.sock &&\
+    unlink /var/run/supervisor.sock
 
 # Create system user to run Composer and Artisan Commands
 RUN groupadd -g 1000 www
@@ -52,6 +53,11 @@ COPY --chown=www:www . /var/www
 
 # Change current user to www
 USER www
+
+# Clean up
+RUN apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
+    rm /var/log/lastlog /var/log/faillog
 
 # Start php-fpm server
 CMD ["php-fpm"]
