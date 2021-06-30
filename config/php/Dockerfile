@@ -54,10 +54,5 @@ COPY --chown=www:www . /var/www
 # Change current user to www
 USER www
 
-# Clean up
-RUN apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
-    rm /var/log/lastlog /var/log/faillog
-
 # Start php-fpm server
 CMD ["php-fpm"]
