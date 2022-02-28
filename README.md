@@ -8,7 +8,7 @@
 
 - **portainer**
 
-- **php:7.4-fpm**
+- **php:8.1-fpm**
 
 
 ## host project
