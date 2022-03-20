@@ -12,7 +12,7 @@ DEFAULT="y"
 read -p "Enable redis? [Y/n]:" eRedis
 eRedis="${eRedis:-${DEFAULT}}"
 
-if [ "${eRedis}" == "y" ] && [ "${eRedis}" == "Y" ]; then
+if [ "${eRedis}" = "y" ] && [ "${eRedis}" = "Y" ]; then
 	sed -i "s/#redis//g" docker-compose.yml
 fi
 
@@ -20,7 +20,7 @@ read -p "Enable meilisearch? [Y/n]:" eMeilisearch
 eMeilisearch="${eRedis:-${DEFAULT}}"
 
 
-if [ "${eMeilisearch}" == "y" ] && [ "${eMeilisearch}" == "Y" ] ; then
+if [ "${eMeilisearch}" = "y" ] && [ "${eMeilisearch}" = "Y" ] ; then
 	sed -i "s/#meilisearch//g" docker-compose.yml
 fi
 
