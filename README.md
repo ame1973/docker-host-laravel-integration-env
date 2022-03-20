@@ -15,7 +15,7 @@
 > 
 > [ame1973/docker-traefik-portainer](https://github.com/ame1973/docker-traefik-portainer)
 
-## Optional images
+## Optional services
 
 - redis
 
