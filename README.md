@@ -11,6 +11,12 @@
 - **php:8.1-fpm**
 
 
+## Optional images
+
+- redis
+
+- meilisearch
+
 ## host project
 
 1. change this project folder name to your own project name.
@@ -20,8 +26,10 @@
 3. run script
 
 ```bash
-./depoly.sh YOUR_PROJECT YOUR_PROJECT_DOMAIN
+./depoly.sh
 ```
+
+4. enter your project name and project domain.
 
 or
 
@@ -61,4 +69,4 @@ rm -rf volumes
 
 - ERROR: no matching manifest for linux/arm64/v8 in the manifest list entries
 
-change `mysql:8.0.23` to `mysql/mysql-server:8.0.23`
+change `mysql:8.0.28` to `mysql/mysql-server:8.0.28`
