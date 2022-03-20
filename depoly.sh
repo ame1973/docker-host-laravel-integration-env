@@ -9,14 +9,14 @@ sed -i "s/YOUR_PROJECT_NAME/$projectName/g" docker-compose.yml
 sed -i "s/YOUR_PROJECT_DOMAIN.com/$projectDomain/g" docker-compose.yml
 
 DEFAULT="y"
-read -e -p "Enable redis? [Y/n]:" eRedis
+read -p "Enable redis? [Y/n]:" eRedis
 eRedis="${eRedis:-${DEFAULT}}"
 
 if [ "${eRedis}" != "y" ] ; then
 	sed -i "s/#redis//g" docker-compose.yml
 fi
 
-read -e -p "Enable meilisearch? [Y/n]:" eMeilisearch
+read -p "Enable meilisearch? [Y/n]:" eMeilisearch
 eMeilisearch="${eRedis:-${DEFAULT}}"
 
 
