@@ -59,6 +59,10 @@ DB_USERNAME=root
 DB_PASSWORD=password
 ```
 
+## Backup SQL Database
+
+run `./backup_db.sh` . the .sql file will output to ./backup/mysql/laravel_{time}.sql
+
 ## Reset
 
 remove images
