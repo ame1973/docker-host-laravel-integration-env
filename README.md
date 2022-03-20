@@ -11,6 +11,9 @@
 - **php:8.1-fpm**
 
 
+> this env base portainer and traefik. please follow up this repo to set the server env.
+> [ame1973/docker-traefik-portainer](https://github.com/ame1973/docker-traefik-portainer)
+
 ## Optional images
 
 - redis
