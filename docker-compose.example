@@ -29,17 +29,26 @@ services:
     networks:
       - internal
 
-  redis:
-    restart: always
-    tty: true
-    image: redis:alpine
-    ports:
-      - 6379:6379
-    volumes:
-      - /volumes/redis-data:/data
-    networks:
-      - internal
+#redis  redis:
+#redis    restart: always
+#redis    tty: true
+#redis    image: redis:alpine
+#redis    ports:
+#redis      - 6379:6379
+#redis    volumes:
+#redis      - /volumes/redis-data:/data
+#redis    networks:
+#redis      - internal
 
+#meilisearch  meilisearch:
+#meilisearch    image: getmeili/meilisearch:latest
+#meilisearch    restart: unless-stopped
+#meilisearch    volumes:
+#meilisearch      - /volumes/meilisearch:/data.ms
+#meilisearch    ports:
+#meilisearch      - 7700:7700
+#meilisearch    networks:
+#meilisearch      - internal
 
   nginx:
     image: nginx:stable-alpine
@@ -48,7 +57,6 @@ services:
     volumes:
       - ./src:/var/www
       - ./volumes/laravel/storage:/var/www/storage
-      # - ./volumes/nginx/storage/public:/var/www/public/storage
       - ./volumes/nginx/log:/var/log/nginx
       - ./config/nginx/default.conf:/etc/nginx/conf.d/default.conf
     networks:
