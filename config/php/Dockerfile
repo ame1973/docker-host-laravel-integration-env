@@ -23,6 +23,8 @@ RUN apt-get update &&\
           gosu \
           git \
           curl \
+          vim \
+          locales \
           libcurl4-openssl-dev \
           ca-certificates \
           supervisor \
@@ -54,7 +56,7 @@ RUN apt-get update &&\
     && docker-php-ext-install zip \
     && docker-php-source delete \
 
-RUN pecl install redis && docker-php-ext-enable redis.so
+RUN pecl install redis && docker-php-ext-enable redis
 
 # Get latest Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
