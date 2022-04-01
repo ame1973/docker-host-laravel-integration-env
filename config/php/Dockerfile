@@ -40,7 +40,11 @@ RUN apt-get update && apt-get install -y \
     && docker-php-source delete \
     && apt-get clean
 
+# redis
 RUN pecl install redis && docker-php-ext-enable redis.so
+
+# swoole
+RUN pecl install swoole && docker-php-ext-enable swoole.so
 
 # Get latest Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -52,9 +56,7 @@ RUN apt-get update &&\
     chmod 777 /var/run/supervisor.sock &&\
     unlink /var/run/supervisor.sock
 	
-RUN apt-get install -yqq --no-install-recommends --show-progress libc-ares-dev &&\
-    pecl -q install -o -f -D 'enable-openssl="yes" enable-http2="yes" enable-swoole-curl="yes" enable-mysqlnd="yes" enable-cares="yes" enable-sockets="no" enable-swoole-json="no"' swoole &&\
-    docker-php-ext-enable swoole
+
 
 # Clear cache
 RUN apt-get clean \
