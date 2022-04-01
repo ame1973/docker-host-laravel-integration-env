@@ -27,7 +27,6 @@ RUN apt-get update &&\
           locales \
           libcurl4-openssl-dev \
           ca-certificates \
-          supervisor \
           libmemcached-dev \
           libz-dev \
           libbrotli-dev \
