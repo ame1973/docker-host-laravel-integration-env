@@ -14,20 +14,37 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime \
     && echo $TZ > /etc/timezone
 
 # Install system dependencies
-RUN apt-get update && apt-get install -y \
-    git \
-    curl \
-    vim \
-    locales \
-    libpng-dev \
-    libsodium-dev \
-    libonig-dev \
-    libxml2-dev \
-    libzip-dev \
-    libjpeg62-turbo-dev \
-    libfreetype6-dev \
-    zip \
-    unzip \
+RUN apt-get update &&\
+    apt-get upgrade -yqq &&\
+    pecl -q channel-update pecl.php.net &&\
+    apt-get install -yqq --no-install-recommends --show-progress \
+          apt-utils \
+          gnupg \
+          gosu \
+          git \
+          curl \
+          libcurl4-openssl-dev \
+          ca-certificates \
+          supervisor \
+          libmemcached-dev \
+          libz-dev \
+          libbrotli-dev \
+          libpq-dev \
+          libjpeg-dev \
+          libpng-dev \
+          libfreetype6-dev \
+          libssl-dev \
+          libwebp-dev \
+          libmcrypt-dev \
+          libonig-dev \
+          libzip-dev zip unzip \
+          libargon2-1 \
+          libidn2-0 \
+          libpcre2-8-0 \
+          libpcre3 \
+          libxml2 \
+          libzstd1 \
+          procps
     && docker-php-ext-install pdo_mysql \
     && docker-php-ext-install mbstring \
     && docker-php-ext-install exif \
@@ -36,7 +53,6 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install gd \
     && docker-php-ext-install zip \
     && docker-php-source delete \
-    && apt-get clean
 
 RUN pecl install redis && docker-php-ext-enable redis.so
 
