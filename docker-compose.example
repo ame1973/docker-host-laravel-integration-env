@@ -14,7 +14,7 @@ services:
       - ./src:/var/www
       - ./volumes/laravel/storage:/var/www/storage
       - ./config/php/php.ini:/usr/local/etc/php/conf.d/php.ini
-      - ./volumes/supervisor:/etc/supervisor
+      - ./volumes/supervisor_conf:/etc/supervisor/conf.d
     networks:
       - internal
 
