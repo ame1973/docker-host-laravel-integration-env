@@ -7,6 +7,7 @@ ARG WWWGROUP=1000
 ARG WWWUSERNAME=www
 ARG TZ=UTC
 
+ENV DEBIAN_FRONTEND=noninteractive
 
 SHELL ["/bin/bash", "-eou", "pipefail", "-c"]
 
