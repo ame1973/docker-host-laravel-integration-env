@@ -21,6 +21,15 @@ if [ "${eMeilisearch}" = "y" ] || [ "${eMeilisearch}" = "Y" ] ; then
 	sed -i "s/#meilisearch//g" docker-compose.yml
 fi
 
+DEFAULT="n"
+read -p "Run Laravel at octane? [y/N]: " eOctane
+eOctane="${eOctane:-${DEFAULT}}"
+if [ "${eOctane}" = "y" ] || [ "${eOctane}" = "Y" ]; then
+	sed -i "s/#laravel-octane//g" docker-compose.yml
+else
+	sed -i "s/#php-fpm//g" docker-compose.yml
+fi
+
 FILE=./src/.env.example
 if test -f "$FILE"; then
     cp ./src/.env.example ./src/.env

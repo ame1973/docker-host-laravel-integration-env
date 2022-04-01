@@ -1,5 +1,18 @@
 FROM php:8.1-fpm
 
+WORKDIR /var/www/
+
+ARG WWWUSER=1000
+ARG WWWGROUP=1000
+ARG WWWUSERNAME=www
+ARG TZ=UTC
+
+
+SHELL ["/bin/bash", "-eou", "pipefail", "-c"]
+
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime \
+    && echo $TZ > /etc/timezone
+
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
     git \
@@ -37,12 +50,19 @@ RUN apt-get update &&\
     chmod 777 /var/run/supervisor.sock &&\
     unlink /var/run/supervisor.sock
 
+RUN apt-get install -yqq --no-install-recommends --show-progress libc-ares-dev \
+      && pecl -q install -o -f -D 'enable-openssl="yes" enable-http2="yes" enable-swoole-curl="yes" enable-mysqlnd="yes" enable-cares="yes"' swoole \
+      && docker-php-ext-enable swoole; \
+
 # Clear cache
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN apt-get clean \
+    && docker-php-source delete \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+    && rm /var/log/lastlog /var/log/faillog
 
 # Create system user to run Composer and Artisan Commands
-RUN groupadd -g 1000 www
-RUN useradd -u 1000 -ms /bin/bash -g www www
+RUN groupadd --force -g $WWWGROUP $WWWUSERNAME \
+    && useradd -ms /bin/bash --no-log-init --no-user-group -g $WWWGROUP -u $WWWUSER $WWWUSERNAME
 
 # Set working directory
 WORKDIR /var/www
@@ -51,10 +71,10 @@ WORKDIR /var/www
 COPY . /var/www
 
 # Copy existing application directory permissions
-COPY --chown=www:www . /var/www
+COPY --chown=$WWWUSERNAME:$WWWUSERNAME . /var/www
 
 # Change current user to www
-USER www
+USER $WWWUSERNAME
 
 # Start php-fpm server
 CMD ["php-fpm"]
