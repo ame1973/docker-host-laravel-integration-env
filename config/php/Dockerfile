@@ -50,9 +50,9 @@ RUN apt-get update &&\
     chmod 777 /var/run/supervisor.sock &&\
     unlink /var/run/supervisor.sock
 
-RUN apt-get install -yqq --no-install-recommends --show-progress libc-ares-dev \
-      && pecl -q install -o -f -D 'enable-openssl="yes" enable-http2="yes" enable-swoole-curl="yes" enable-mysqlnd="yes" enable-cares="yes"' swoole \
-      && docker-php-ext-enable swoole; \
+RUN apt-get install -yqq --no-install-recommends --show-progress libc-ares-dev &&\
+    pecl -q install -o -f -D 'enable-openssl="yes" enable-http2="yes" enable-swoole-curl="yes" enable-mysqlnd="yes" enable-cares="yes"' swoole &&\
+    docker-php-ext-enable swoole
 
 # Clear cache
 RUN apt-get clean \
