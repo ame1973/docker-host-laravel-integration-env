@@ -8,6 +8,8 @@ services:
     restart: unless-stopped
     tty: true
     working_dir: /var/www/
+#laravel-octane    ports:
+#laravel-octane      - 8888:8888
     volumes:
       - ./src:/var/www
       - ./volumes/laravel/storage:/var/www/storage
