@@ -44,7 +44,7 @@ RUN apt-get update &&\
           libpcre3 \
           libxml2 \
           libzstd1 \
-          procps
+          procps \
     && docker-php-ext-install pdo_mysql \
     && docker-php-ext-install mbstring \
     && docker-php-ext-install exif \
