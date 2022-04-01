@@ -54,9 +54,9 @@ RUN apt-get update &&\
     && docker-php-ext-install bcmath \
     && docker-php-ext-install gd \
     && docker-php-ext-install zip \
-    && docker-php-source delete \
+    && docker-php-source delete
 
-RUN pecl install redis && docker-php-ext-enable redis
+RUN pecl install redis && docker-php-ext-enable redis.so
 
 # Get latest Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
