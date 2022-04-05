@@ -4,7 +4,8 @@ services:
   php:
     build:
       context: .
-      dockerfile: ./config/php/Dockerfile
+#php-fpm      dockerfile: ./config/php/Dockerfile
+#laravel-octane      dockerfile: ./config/php/laravel_octane/Dockerfile
     restart: unless-stopped
     tty: true
     working_dir: /var/www/
