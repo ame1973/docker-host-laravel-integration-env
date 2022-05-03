@@ -51,13 +51,7 @@ RUN pecl install swoole && docker-php-ext-enable swoole.so
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Install supervisor
-RUN apt-get update &&\
-    apt-get install -y supervisor &&\
-    touch /var/run/supervisor.sock &&\
-    chmod 777 /var/run/supervisor.sock &&\
-    unlink /var/run/supervisor.sock
-	
-
+RUN apt-get update && apt-get install -y --no-install-recommends --no-install-suggests supervisor
 
 # Clear cache
 RUN apt-get clean \
