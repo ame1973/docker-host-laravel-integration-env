@@ -45,7 +45,7 @@ RUN apt-get update && apt-get install -y \
 RUN pecl install redis && docker-php-ext-enable redis.so
 
 # swoole
-RUN pecl install swoole && docker-php-ext-enable swoole.so
+# RUN pecl install swoole && docker-php-ext-enable swoole.so
 
 # Get latest Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
