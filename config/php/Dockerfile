@@ -31,6 +31,11 @@ RUN apt-get update && apt-get install -y \
     zip \
     unzip \
     procps \
+    libgmp-dev \
+    re2c \
+    libmhash-dev \
+    libmcrypt-dev \
+    file \
     && docker-php-ext-install pdo_mysql \
     && docker-php-ext-install mbstring \
     && docker-php-ext-install exif \
@@ -40,6 +45,10 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install zip \
     && docker-php-source delete \
     && apt-get clean
+
+RUN ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/local/include/
+RUN docker-php-ext-configure gmp 
+RUN docker-php-ext-install gmp
 
 # redis
 RUN pecl install redis && docker-php-ext-enable redis.so
