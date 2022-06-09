@@ -1,0 +1,1 @@
+docker exec -it YOUR_PROJECT_NAME_php_1 /bin/bash
