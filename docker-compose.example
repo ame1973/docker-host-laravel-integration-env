@@ -3,9 +3,9 @@ version: "3.7"
 services:
   php:
     build:
-      context: .
-#php-fpm      dockerfile: ./config/php/Dockerfile
-#laravel-octane      dockerfile: ./config/php/laravel_octane/Dockerfile
+      context: ./config/php
+#php-fpm      dockerfile: ./Dockerfile
+#laravel-octane      dockerfile: ./laravel_octane/Dockerfile
     restart: unless-stopped
     tty: true
     working_dir: /var/www/
@@ -78,3 +78,8 @@ networks:
     external: true
   internal:
     driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.28.0.0/16
+          gateway: 172.28.0.1

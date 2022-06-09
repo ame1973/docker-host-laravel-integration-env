@@ -31,6 +31,11 @@ RUN apt-get update && apt-get install -y \
     zip \
     unzip \
     procps \
+    libgmp-dev \
+    re2c \
+    libmhash-dev \
+    libmcrypt-dev \
+    file \
     && docker-php-ext-install pdo_mysql \
     && docker-php-ext-install mbstring \
     && docker-php-ext-install exif \
@@ -41,23 +46,21 @@ RUN apt-get update && apt-get install -y \
     && docker-php-source delete \
     && apt-get clean
 
+RUN ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/local/include/
+RUN docker-php-ext-configure gmp 
+RUN docker-php-ext-install gmp
+
 # redis
 RUN pecl install redis && docker-php-ext-enable redis.so
 
 # swoole
-RUN pecl install swoole && docker-php-ext-enable swoole.so
+# RUN pecl install swoole && docker-php-ext-enable swoole.so
 
 # Get latest Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Install supervisor
-RUN apt-get update &&\
-    apt-get install -y supervisor &&\
-    touch /var/run/supervisor.sock &&\
-    chmod 777 /var/run/supervisor.sock &&\
-    unlink /var/run/supervisor.sock
-	
-
+RUN apt-get update && apt-get install -y --no-install-recommends --no-install-suggests supervisor
 
 # Clear cache
 RUN apt-get clean \
