@@ -8,12 +8,12 @@ services:
 #laravel-octane      dockerfile: ./laravel_octane/Dockerfile
     restart: unless-stopped
     tty: true
-    working_dir: /var/www/
+    working_dir: /var/www/app/
 #laravel-octane    ports:
 #laravel-octane      - 8888:8888
     volumes:
-      - ./src:/var/www
-      - ./volumes/laravel/storage:/var/www/storage
+      - ./src:/var/www/app
+      - ./volumes/laravel/storage:/var/www/app/storage
       - ./config/php/php.ini:/usr/local/etc/php/conf.d/php.ini
       - ./volumes/supervisor_conf:/etc/supervisor/conf.d
     networks:
