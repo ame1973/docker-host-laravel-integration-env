@@ -66,7 +66,7 @@ RUN apt-get update &&\
     chmod 777 /var/run/supervisor.sock &&\
     unlink /var/run/supervisor.sock
 	
-
+RUN chmod 777 -R /var/log/supervisor
 
 # Clear cache
 RUN apt-get clean \
