@@ -59,8 +59,8 @@ services:
     restart: unless-stopped
     tty: true
     volumes:
-      - ./src:/var/www
-      - ./volumes/laravel/storage:/var/www/storage
+      - ./src:/var/www/app
+      - ./volumes/laravel/storage:/var/www/app/storage
       - ./volumes/nginx/log:/var/log/nginx
 #php-fpm      - ./config/nginx/default.conf:/etc/nginx/conf.d/default.conf
 #laravel-octane      - ./config/nginx/laravel_octane/default.conf:/etc/nginx/conf.d/default.conf
