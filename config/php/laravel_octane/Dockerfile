@@ -1,6 +1,6 @@
 FROM php:8.1-fpm
 
-WORKDIR /var/www/
+WORKDIR /var/www/app/
 
 ARG WWWUSER=1000
 ARG WWWGROUP=1000
@@ -66,7 +66,7 @@ RUN apt-get update &&\
     chmod 777 /var/run/supervisor.sock &&\
     unlink /var/run/supervisor.sock
 	
-
+RUN chmod -R 777 /var/log/supervisor
 
 # Clear cache
 RUN apt-get clean \
@@ -79,13 +79,13 @@ RUN groupadd --force -g $WWWGROUP $WWWUSERNAME \
     && useradd -ms /bin/bash --no-log-init --no-user-group -g $WWWGROUP -u $WWWUSER $WWWUSERNAME
 
 # Set working directory
-WORKDIR /var/www
+WORKDIR /var/www/app
 
 # Copy existing application directory contents
-COPY . /var/www
+COPY . /var/www/app
 
 # Copy existing application directory permissions
-COPY --chown=$WWWUSERNAME:$WWWUSERNAME . /var/www
+COPY --chown=$WWWUSERNAME:$WWWUSERNAME . /var/www/app
 
 # Change current user to www
 USER $WWWUSERNAME
