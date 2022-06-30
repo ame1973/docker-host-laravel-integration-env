@@ -36,7 +36,7 @@ RUN apt-get update && apt-get install -y \
     libmhash-dev \
     libmcrypt-dev \
     file \
-    mysql-client \
+    default-mysql-client \
     && docker-php-ext-install pdo_mysql \
     && docker-php-ext-install mbstring \
     && docker-php-ext-install exif \
