@@ -1,7 +1,8 @@
 /src
 
-docker-composer.yml
+docker-compose.yml
 backup_db.sh
+bash.sh
 
 !volumes/
 volumes/*
@@ -9,3 +10,5 @@ volumes/*
 
 
 .idea/
+
+backup/mysql/*
