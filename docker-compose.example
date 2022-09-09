@@ -10,7 +10,7 @@ services:
     tty: true
     working_dir: /var/www/app/
 #laravel-octane    ports:
-#laravel-octane      - 8888:8888
+#laravel-octane      - 8888
     volumes:
       - ./src:/var/www/app
       - ./volumes/laravel/storage:/var/www/app/storage
@@ -38,7 +38,7 @@ services:
 #redis    tty: true
 #redis    image: redis:alpine
 #redis    ports:
-#redis      - 6379:6379
+#redis      - 6379
 #redis    volumes:
 #redis      - /volumes/redis-data:/data
 #redis    networks:
@@ -48,9 +48,9 @@ services:
 #meilisearch    image: getmeili/meilisearch:latest
 #meilisearch    restart: unless-stopped
 #meilisearch    volumes:
-#meilisearch      - /volumes/meilisearch:/data.ms
+#meilisearch      - ./volumes/meilisearch:/data.ms
 #meilisearch    ports:
-#meilisearch      - 7700:7700
+#meilisearch      - 7700
 #meilisearch    networks:
 #meilisearch      - internal
 
@@ -81,5 +81,5 @@ networks:
     ipam:
       driver: default
       config:
-        - subnet: 172.28.0.0/16
-          gateway: 172.28.0.1
+        - subnet: 172.16.1.0/24
+          gateway: 172.16.1.1
