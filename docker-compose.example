@@ -45,7 +45,7 @@ services:
 #redis      - internal
 
 #meilisearch  meilisearch:
-#meilisearch    image: getmeili/meilisearch:latest
+#meilisearch    image: getmeili/meilisearch:v0.28
 #meilisearch    restart: unless-stopped
 #meilisearch    volumes:
 #meilisearch      - ./volumes/meilisearch:/data.ms
