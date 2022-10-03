@@ -40,7 +40,7 @@ services:
 #redis    ports:
 #redis      - 6379
 #redis    volumes:
-#redis      - /volumes/redis-data:/data
+#redis      - ./volumes/redis-data:/data
 #redis    networks:
 #redis      - internal
 
