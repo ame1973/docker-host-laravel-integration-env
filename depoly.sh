@@ -6,7 +6,7 @@ read -p 'Project Domain: ' projectDomain
 cp docker-compose.example docker-compose.yml
 
 sed -i "s/YOUR_PROJECT_NAME/$projectName/g" docker-compose.yml
-sed -i "s/YOUR_PROJECT_DOMAIN.com/$projectDomain/g" docker-compose.yml
+sed -i "s/YOUR_PROJECT_DOMAIN/$projectDomain/g" docker-compose.yml
 
 DEFAULT="y"
 read -p "Enable redis? [Y/n]: " eRedis
@@ -28,6 +28,17 @@ if [ "${eOctane}" = "y" ] || [ "${eOctane}" = "Y" ]; then
 	sed -i "s/#laravel-octane//g" docker-compose.yml
 else
 	sed -i "s/#php-fpm//g" docker-compose.yml
+fi
+
+
+read -p "Enable Frontend web service? [y/N]: " eFrontend
+eFrontend="${eFrontend:-${DEFAULT}}"
+if [ "${eFrontend}" = "y" ] || [ "${eFrontend}" = "Y" ] ; then
+  read -p 'Frontend Domain: ' frontendDomain
+  sed -i "s/YOUR_PROJECT_FRONTEND_DOMAIN/$frontendDomain/g" docker-compose.yml
+
+	sed -i "s/#frontend-service//g" docker-compose.yml
+	mkdir "frontend_src"
 fi
 
 FILE=./src/.env.example
